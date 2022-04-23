@@ -1,0 +1,28 @@
+{
+  "root": "apps/converter-e2e",
+  "sourceRoot": "apps/converter-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/converter-e2e/cypress.json",
+        "devServerTarget": "converter:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "converter:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/converter-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["converter"]
+}

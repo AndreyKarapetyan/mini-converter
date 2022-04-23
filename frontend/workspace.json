@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "converter": "apps/converter",
+    "converter-e2e": "apps/converter-e2e"
+  }
+}

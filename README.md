@@ -1,0 +1,1 @@
+Both for frontend and backend ```npm i```, then ```npm start```

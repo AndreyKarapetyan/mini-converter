@@ -1,0 +1,81 @@
+{
+  "root": "apps/converter",
+  "sourceRoot": "apps/converter/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/converter",
+        "index": "apps/converter/src/index.html",
+        "baseHref": "/",
+        "main": "apps/converter/src/main.tsx",
+        "polyfills": "apps/converter/src/polyfills.ts",
+        "tsConfig": "apps/converter/tsconfig.app.json",
+        "assets": [
+          "apps/converter/src/assets"
+        ],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/converter/src/environments/environment.ts",
+              "with": "apps/converter/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "converter:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "converter:build:development"
+        },
+        "production": {
+          "buildTarget": "converter:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/converter/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/converter"],
+      "options": {
+        "jestConfig": "apps/converter/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
