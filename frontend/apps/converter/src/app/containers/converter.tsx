@@ -15,40 +15,40 @@ export function Converter() {
   const [isError, setError] = useState(false);
 
   const url = `${process.env.NX_BASE_URL}/quote?amount=${amount}&from_currency_code=${baseCur}&to_currency_code=${quoteCur}`;
-  const onAmountChange = (e: any) => {
+  const onAmountChange = (e: any): void => {
     setAmount(e.target.value);
     if (shouldAutoConvert) {
       setShouldConvert(true);
     }
   };
-  const onBaseCurChange = (e: any) => {
+  const onBaseCurChange = (e: any): void => {
     setBaseCur(e.target.value);
     if (shouldAutoConvert) {
       setShouldConvert(true);
     }
   };
-  const onQuoteCurChange = (e: any) => {
+  const onQuoteCurChange = (e: any): void => {
     setQuoteCur(e.target.value);
     if (shouldAutoConvert) {
       setShouldConvert(true);
     }
   };
-  const onClick = () => {
+  const onClick = (): void => {
     setShouldConvert(true);
   };
-  const validateAmount = (val: any) => {
+  const validateAmount = (val: any): boolean => {
     if (shouldConvert || val) {
       return Boolean(Number(val));
     }
     return true;
-  }
+  };
   const validateCur = (val: any): boolean => {
     if (shouldConvert) {
       return Object.values(SupportedCurrencies).includes(val);
     }
     return true;
-  }
-  const validateData = () =>
+  };
+  const validateData = (): boolean =>
     validateAmount(amount) && validateCur(baseCur) && validateCur(quoteCur);
   const isValidData = validateData();
 
